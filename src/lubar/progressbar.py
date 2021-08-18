@@ -56,7 +56,8 @@ class ProgressBar:
             elapsed_iterations_section,
             elapsed_time_section,
         ]
-        bar = self.join_char.join(bar_parts) + "\r"
+        bar = self.join_char.join(bar_parts)
+        self.file.write("\r")
         self.file.write(bar)
         self.file.flush()
 
