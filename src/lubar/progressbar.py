@@ -22,6 +22,7 @@ class ProgressBar:
         self.remained_char = remained_char
         self.enclosing_chars = enclosing_chars
         self.join_char = join_char
+        self.__last_bar_length = 0
 
     def __calculate_progress(self, idx):
         progressed = int(self.size * idx / self.iterations)
@@ -58,8 +59,11 @@ class ProgressBar:
         ]
         bar = self.join_char.join(bar_parts)
         self.file.write("\r")
+        self.file.write(" " * self.__last_bar_length)
+        self.file.write("\r")
         self.file.write(bar)
         self.file.flush()
+        self.__last_bar_length = len(bar)
 
     def __call__(self, iterable):
         start_time = datetime.datetime.now()
