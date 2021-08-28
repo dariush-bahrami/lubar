@@ -68,9 +68,9 @@ class ProgressBar:
     def __call__(self, iterable):
         start_time = datetime.datetime.now()
         for idx, item in enumerate(iterable):
-            yield item
             current_time = datetime.datetime.now()
             elapsed_time = current_time - start_time
             self.show(idx + 1, elapsed_time)
+            yield item
         self.file.write("\n")
         self.file.flush()
